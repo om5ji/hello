@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure Download | Official Release</title>
-    <meta http-equiv="refresh" content="2; url=dummy_app.exe">
     <style>
         body {
             background-color: #0d1117;
@@ -56,42 +55,11 @@
             margin-bottom: 30px;
             letter-spacing: 0.5px;
         }
-        .trust-features {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            text-align: left;
-            background-color: #0d1117;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #21262d;
-            margin-top: 10px;
-        }
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.9rem;
-            color: #e6edf3;
-        }
-        .trust-item i {
-            font-size: 1.1rem;
-        }
         .status-text {
-            color: #8b949e;
-            font-size: 0.8rem;
+            color: #e3b341; /* पीला रंग ताकि यूज़र का ध्यान जाए */
+            font-size: 0.95rem;
             margin-top: 25px;
-        }
-        .manual-link {
-            display: inline-block;
-            margin-top: 15px;
-            color: #58a6ff;
-            text-decoration: none;
-            font-size: 0.9rem;
             font-weight: 500;
-        }
-        .manual-link:hover {
-            text-decoration: underline;
         }
     </style>
 </head>
@@ -100,25 +68,46 @@
     <div class="download-card">
         <div class="icon">🛡️</div>
         <h2>Remote Tech Tool</h2>
-        <div class="meta-info">Version 1.0.2 &bull; 15 MB &bull; Windows/Linux/macOS</div>
+        <div class="meta-info">Version 1.0.2 &bull; Auto-Detecting Device...</div>
         
         <div class="primary-badge">✓ 100% Safe & Verified</div>
         
-        <div class="trust-features">
-            <div class="trust-item">
-                <i>✅</i> <span><b>Malware Free:</b> Scanned by 40+ Antivirus engines</span>
-            </div>
-            <div class="trust-item">
-                <i>🔒</i> <span><b>Secure Connection:</b> 256-bit SSL Encrypted</span>
-            </div>
-            <div class="trust-item">
-                <i>⚡</i> <span><b>Fast Download:</b> Direct from secure servers</span>
-            </div>
-        </div>
-
-        <p class="status-text">Your secure download will start in 2 seconds...</p>
-        <a href="dummy_app.exe" class="manual-link">Click here to download manually</a>
+        <p class="status-text" id="download-status">Checking your device...</p>
     </div>
+
+    <script>
+        function startSmartDownload() {
+            // यूज़र के ब्राउज़र की जानकारी निकालना
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            var statusElement = document.getElementById("download-status");
+
+            // 1. अगर डिवाइस Android है
+            if (/android/i.test(userAgent)) {
+                statusElement.innerHTML = "Android detected! Starting .apk download...";
+                statusElement.style.color = "#3fb950"; // हरा रंग
+                window.location.href = "dummy_app.apk"; // यहाँ Android ऐप का लिंक होगा
+            } 
+            // 2. अगर डिवाइस iPhone/iPad (iOS) है
+            else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                statusElement.innerHTML = "iOS detected! Redirecting to App Store...";
+                statusElement.style.color = "#58a6ff"; // नीला रंग
+                // अभी के लिए alert लगा है, बाद में इसे App store के लिंक से बदल देंगे
+                setTimeout(function() {
+                    alert("Since you are on iPhone, you will be redirected to the Apple App Store.");
+                    // window.location.href = "https://apps.apple.com/in/app/your-app-link";
+                }, 1000);
+            } 
+            // 3. अगर कंप्यूटर (Windows/Linux/Mac) है
+            else {
+                statusElement.innerHTML = "Desktop detected! Starting .exe download...";
+                statusElement.style.color = "#3fb950"; 
+                window.location.href = "dummy_app.exe"; // यहाँ डेस्कटॉप ऐप का लिंक होगा
+            }
+        }
+
+        // पेज खुलने के 2 सेकंड बाद यह दिमाग अपना काम शुरू कर देगा
+        setTimeout(startSmartDownload, 2000);
+    </script>
 
 </body>
 </html>
