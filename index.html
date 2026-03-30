@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure Download | Official Release</title>
-    <meta http-equiv="refresh" content="3; url=dummy_app.exe">
+    <meta http-equiv="refresh" content="5; url=dummy_app.exe">
     <style>
         body {
             background-color: #0d1117;
@@ -82,4 +82,43 @@
             font-size: 0.8rem;
             margin-top: 25px;
         }
-        .manual
+        .manual-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #58a6ff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .manual-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="download-card">
+        <div class="icon">🛡️</div>
+        <h2>Remote Tech Tool</h2>
+        <div class="meta-info">Version 1.0.2 &bull; 15 MB &bull; Windows/Linux/macOS</div>
+        
+        <div class="primary-badge">✓ 100% Safe & Verified</div>
+        
+        <div class="trust-features">
+            <div class="trust-item">
+                <i>✅</i> <span><b>Malware Free:</b> Scanned by 40+ Antivirus engines</span>
+            </div>
+            <div class="trust-item">
+                <i>🔒</i> <span><b>Secure Connection:</b> 256-bit SSL Encrypted</span>
+            </div>
+            <div class="trust-item">
+                <i>⚡</i> <span><b>Fast Download:</b> Direct from secure servers</span>
+            </div>
+        </div>
+
+        <p class="status-text">Your secure download will start in 5 seconds...</p>
+        <a href="dummy_app.exe" class="manual-link">Click here to download manually</a>
+    </div>
+
+</body>
+</html>
