@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Download | Tech Tool</title>
+    <title>Secure Download | Official Release</title>
     <meta http-equiv="refresh" content="3; url=dummy_app.exe">
     <style>
         body {
-            background-color: #0d1117; /* प्रोफेशनल डार्क थीम */
+            background-color: #0d1117;
             color: #c9d1d9;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex;
@@ -26,84 +26,60 @@
             text-align: center;
             max-width: 450px;
             width: 100%;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
         }
         .icon {
             font-size: 50px;
             margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(88, 166, 255, 0.4);
         }
         h2 {
-            color: #58a6ff;
+            color: #ffffff;
             margin: 0 0 5px 0;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
+            font-weight: 600;
         }
         .meta-info {
             color: #8b949e;
             font-size: 0.9rem;
-            margin-bottom: 20px;
-        }
-        .badge {
-            display: inline-block;
-            background-color: #238636;
-            color: #ffffff;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
             margin-bottom: 25px;
+        }
+        .primary-badge {
+            display: inline-block;
+            background-color: rgba(35, 134, 54, 0.15);
+            color: #3fb950;
+            border: 1px solid #2ea043;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 30px;
             letter-spacing: 0.5px;
         }
-        .instruction-box {
-            background-color: #1f1b0a;
-            border-left: 4px solid #d29922;
-            padding: 15px;
+        .trust-features {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
             text-align: left;
-            border-radius: 4px;
+            background-color: #0d1117;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #21262d;
+            margin-top: 10px;
+        }
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: #e6edf3;
+        }
+        .trust-item i {
+            font-size: 1.1rem;
+        }
+        .status-text {
+            color: #8b949e;
+            font-size: 0.8rem;
             margin-top: 25px;
         }
-        .instruction-box h4 {
-            color: #e3b341;
-            margin: 0 0 8px 0;
-            font-size: 0.95rem;
-        }
-        .instruction-box p {
-            color: #c9d1d9;
-            margin: 0;
-            font-size: 0.85rem;
-            line-height: 1.5;
-        }
-        .manual-link {
-            display: inline-block;
-            margin-top: 20px;
-            color: #58a6ff;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-        .manual-link:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="download-card">
-        <div class="icon">🛡️</div>
-        <h2>Remote Tech Tool</h2>
-        <div class="meta-info">Version 1.0.2 &bull; 15 MB &bull; Official Release</div>
-        
-        <div class="badge">✓ 100% Safe & Verified</div>
-        
-        <p>Your secure download is starting automatically in a few seconds...</p>
-        
-        <div class="instruction-box">
-            <h4>⚠️ Important Installation Note</h4>
-            <p>Since this app is downloaded directly and not from the Play Store/Microsoft Store, your browser might show a <b>"File might be harmful"</b> warning. This is a standard security prompt.</p>
-            <br>
-            <p>Simply tap <b>"Download Anyway"</b> or <b>"Keep"</b> to proceed safely.</p>
-        </div>
-
-        <a href="dummy_app.exe" class="manual-link">Click here if download doesn't start</a>
-    </div>
-
-</body>
-</html>
+        .manual
