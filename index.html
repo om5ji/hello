@@ -25,41 +25,67 @@
             text-align: center;
             max-width: 450px;
             width: 100%;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
         }
         .icon {
             font-size: 50px;
             margin-bottom: 10px;
-            text-shadow: 0 0 15px rgba(88, 166, 255, 0.4);
         }
         h2 {
-            color: #ffffff;
+            color: #58a6ff;
             margin: 0 0 5px 0;
-            font-size: 1.8rem;
-            font-weight: 600;
+            font-size: 1.6rem;
         }
         .meta-info {
             color: #8b949e;
             font-size: 0.9rem;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
-        .primary-badge {
+        .badge {
             display: inline-block;
-            background-color: rgba(35, 134, 54, 0.15);
-            color: #3fb950;
-            border: 1px solid #2ea043;
-            padding: 6px 16px;
+            background-color: #238636;
+            color: #ffffff;
+            padding: 5px 12px;
             border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 30px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 20px;
             letter-spacing: 0.5px;
         }
-        .status-text {
-            color: #e3b341; /* पीला रंग ताकि यूज़र का ध्यान जाए */
-            font-size: 0.95rem;
+        .instruction-box {
+            background-color: #1f1b0a;
+            border-left: 4px solid #d29922;
+            padding: 15px;
+            text-align: left;
+            border-radius: 4px;
             margin-top: 25px;
-            font-weight: 500;
+            display: none; /* यह शुरुआत में छुपा रहेगा */
+        }
+        .instruction-box h4 {
+            color: #e3b341;
+            margin: 0 0 8px 0;
+            font-size: 0.95rem;
+        }
+        .instruction-box p {
+            color: #c9d1d9;
+            margin: 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        .status-text {
+            font-size: 1rem;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .manual-link {
+            display: none; /* यह शुरुआत में छुपा रहेगा */
+            margin-top: 20px;
+            color: #58a6ff;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .manual-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -68,45 +94,50 @@
     <div class="download-card">
         <div class="icon">🛡️</div>
         <h2>Remote Tech Tool</h2>
-        <div class="meta-info">Version 1.0.2 &bull; Auto-Detecting Device...</div>
+        <div class="meta-info">Version 1.0.2 &bull; 15 MB &bull; Android Only</div>
         
-        <div class="primary-badge">✓ 100% Safe & Verified</div>
+        <div class="badge">✓ 100% Safe & Verified</div>
         
-        <p class="status-text" id="download-status">Checking your device...</p>
+        <div id="status-message" class="status-text" style="color: #e3b341;">Checking your device...</div>
+        
+        <div class="instruction-box" id="warning-box">
+            <h4>⚠️ Important Installation Note</h4>
+            <p>Since this app is downloaded directly and not from the Play Store, your browser might show a <b>"File might be harmful"</b> warning. This is a standard security prompt.</p>
+            <br>
+            <p>Simply tap <b>"Download Anyway"</b> or <b>"Keep"</b> to proceed safely.</p>
+        </div>
+
+        <a href="dummy_app.apk" class="manual-link" id="manual-download">Click here to download manually</a>
     </div>
 
     <script>
-        function startSmartDownload() {
-            // यूज़र के ब्राउज़र की जानकारी निकालना
+        function checkDeviceAndDownload() {
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            var statusElement = document.getElementById("download-status");
+            var statusMessage = document.getElementById("status-message");
+            var warningBox = document.getElementById("warning-box");
+            var manualLink = document.getElementById("manual-download");
 
-            // 1. अगर डिवाइस Android है
+            // सिर्फ Android के लिए चेक
             if (/android/i.test(userAgent)) {
-                statusElement.innerHTML = "Android detected! Starting .apk download...";
-                statusElement.style.color = "#3fb950"; // हरा रंग
-                window.location.href = "dummy_app.apk"; // यहाँ Android ऐप का लिंक होगा
-            } 
-            // 2. अगर डिवाइस iPhone/iPad (iOS) है
-            else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                statusElement.innerHTML = "iOS detected! Redirecting to App Store...";
-                statusElement.style.color = "#58a6ff"; // नीला रंग
-                // अभी के लिए alert लगा है, बाद में इसे App store के लिंक से बदल देंगे
+                statusMessage.innerHTML = "Android detected! Your download is starting...";
+                statusMessage.style.color = "#3fb950"; // हरा रंग
+                warningBox.style.display = "block"; // वॉर्निंग बॉक्स दिखाएं
+                manualLink.style.display = "inline-block"; // मैनुअल लिंक दिखाएं
+                
+                // 2 सेकंड बाद डाउनलोड शुरू
                 setTimeout(function() {
-                    alert("Since you are on iPhone, you will be redirected to the Apple App Store.");
-                    // window.location.href = "https://apps.apple.com/in/app/your-app-link";
-                }, 1000);
-            } 
-            // 3. अगर कंप्यूटर (Windows/Linux/Mac) है
-            else {
-                statusElement.innerHTML = "Desktop detected! Starting .exe download...";
-                statusElement.style.color = "#3fb950"; 
-                window.location.href = "dummy_app.exe"; // यहाँ डेस्कटॉप ऐप का लिंक होगा
+                    window.location.href = "dummy_app.apk"; // यहाँ असली .apk का नाम होगा
+                }, 2000);
+            } else {
+                // अगर Android नहीं है (Windows, Linux, iOS)
+                statusMessage.innerHTML = "❌ This app is only available for Android devices.";
+                statusMessage.style.color = "#f85149"; // लाल रंग
+                // वॉर्निंग बॉक्स और डाउनलोड लिंक छुपे ही रहेंगे
             }
         }
 
-        // पेज खुलने के 2 सेकंड बाद यह दिमाग अपना काम शुरू कर देगा
-        setTimeout(startSmartDownload, 2000);
+        // पेज खुलने के 1 सेकंड बाद यह डिवाइस चेक करेगा
+        setTimeout(checkDeviceAndDownload, 1000);
     </script>
 
 </body>
